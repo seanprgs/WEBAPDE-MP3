@@ -5,12 +5,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import niche.bean.PhotoTag;
 import niche.service.PhotoService;
 
 public class PostActionHandler implements ActionHandler {
@@ -25,7 +28,15 @@ public class PostActionHandler implements ActionHandler {
 		String title = request.getParameter("title");
 		String description = request.getParameter("description");
 		String num = request.getParameter("tagNum");
-		String tag0 = request.getParameter("tag0");
+		//String tag0 = request.getParameter("tag0");
+		
+		int numOfTags = Integer.parseInt(request.getParameter("tagNum"));
+		Set <PhotoTag> photoTags = new HashSet <PhotoTag> ();
+		for(int i = 0; i < numOfTags; i++) {
+			PhotoTag pt = new PhotoTag();
+			pt.setTag(request.getParameter("tag"+i));
+			photoTags.add(pt);
+		}
 		
 		//Retrieve file
 		Part part = request.getPart("file");
@@ -52,7 +63,7 @@ public class PostActionHandler implements ActionHandler {
 		System.out.println(title);
 		System.out.println(description);
 		System.out.println(num);
-		System.out.println(tag0);
+		//System.out.println(tag0);
 		
 		//Create filename to be saved to FOLDER
 		File file = new File(FOLDER, filename);
@@ -62,8 +73,9 @@ public class PostActionHandler implements ActionHandler {
 		Files.copy(fileInputStream, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
 		fileInputStream.close();
 		
-		//Save to db
+		//Save photo to db
 		
+		//Save tags to db
 		
 		request.setAttribute("isprivate", false);
 		request.setAttribute("ispublic", true);
