@@ -1,0 +1,993 @@
+@import url('https://fonts.googleapis.com/css?family=Vollkorn');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+/* background base */
+#background {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    background-size:     cover;
+    background-position: center;   
+    background-image: url(../res/background.jpg);
+    height:100%;
+    width:100%;
+    filter: blur(0.5px);
+    z-index: -1;
+}
+
+#overlay {
+    position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    background-color: black;
+    opacity: 0;
+}
+
+#viewport {
+    position: absolute;
+    top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* navigation bar */
+.nav-item {
+    font-family: 'Vollkorn';
+    font-size: 200%;
+    color: white;
+}
+
+.nav-bar {
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    left: 0;
+    z-index: 7;
+    top: 0;
+    
+}
+
+.nav-bg {
+    background: black;
+    width: 100%;
+    opacity: 1;
+    z-index: 6;
+    height: 50px;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.nav-icon {
+    text-decoration: none;
+    text-align: left;
+    cursor: pointer;
+    padding: 5px;
+    transition: 2s;
+}
+
+.nav-icon:hover {
+   text-shadow: 0 0 5px white;
+}
+
+.nav-main-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.nav-link {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.nav-title {
+    font-family: 'Vollkorn', sans-serif;
+    font-style: italic;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+.nav-home {
+    background-color: transparent;
+    border-style: none;
+    cursor: pointer;
+    text-decoration: none;
+    height: 46px;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.nav-home:hover {
+    border-bottom-style: solid;
+    border-bottom-color: white;
+}
+
+.nav-home {
+    display: flex;
+    align-content: center;
+    
+}
+
+.nav-left {
+    position: absolute;
+    height: 100%;
+    line-height: 50px;
+}
+
+.nav-right {
+    top: 0;
+    right: 0;
+    position: absolute;
+    padding-right: 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-center {
+    width: 100%;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-width: 0.5;
+    border-color: white;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+.tag-container .tag {
+    font-family: "Open Sans";
+}
+
+.search {
+    
+}
+
+.share {
+    border-style: none;
+    background-color: black;
+    opacity: 0.8;
+    color: white;
+    font-family: "Open Sans";
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.5s;
+}
+
+.share:hover {
+    opacity: 1.0;
+}
+
+.users {
+    font-size: 20px;
+    font-family: "Open Sans";
+    background-color: transparent;
+    border-color: black;
+}
+
+#users option{
+    font-family: "Open Sans";
+    background-color: black;
+    color: white;
+}
+
+
+
+.nav-center-wrapper {
+    margin: auto;
+    width: 30%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    transition: 1s;
+}
+
+.nav-field {
+    background-color: transparent;
+    border-color: transparent;
+    font-size: 120%;
+    width: 70%;
+    margin: 0;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.nav-field:focus {
+   outline: none;
+}
+
+.nav-icon {
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+
+#search {
+    background-color: transparent;
+    border-color: transparent;
+    font-size: 120%;
+}
+
+.user {
+    font-size: 170%;
+    cursor: pointer;
+    font-family: "Open Sans";
+}
+
+#about {
+    width: 50px;
+    height: 50px;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+}
+
+.about-icon {
+    font-size: 35px;
+    border-style: none;
+    bottom: 0px;
+    background-color: transparent;
+}
+
+/* place holder */
+::-webkit-input-placeholder { 
+    color:    #9A9A9A;
+}
+
+:-moz-placeholder { 
+   color:    #9A9A9A;
+   opacity:  1;
+}
+
+::-moz-placeholder {
+   color:    #9A9A9A;
+   opacity:  1;
+}
+
+:-ms-input-placeholder { 
+   color:    #9A9A9A;
+}
+
+::-ms-input-placeholder { 
+   color:    #9A9A9A;
+}
+
+/* popup [login, logout] dropdown */
+.popup-form-wrapper {
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    background-color: black;
+    width: 250px;
+    color: white;
+    opacity: 1;
+    display: inline-block;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.warning {
+	color: firebrick;
+    text-align: center;
+    margin: 0px;
+    width: 100%;
+}
+
+.popup-form {
+    margin: 0px;
+    margin-bottom: 5px;
+}
+
+.popup-form, .popup-field, .popup-button {
+    font-size: 20px;
+    font-family: 'Raleway';
+    color: white;
+}
+
+.popup-field {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 90%;
+}
+
+.popup-label {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.popup-check {
+    margin-left: 10px;
+}
+.popup-button, .popup-link, .popup-field {
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    background-color: black;
+    transition: 1s;
+}
+
+.popup-link {
+    cursor: pointer;
+    margin: 0;
+    margin-left: 5px;
+    font-family: 'Raleway';
+    border: none;
+}
+
+.popup-button {
+    color: white;
+    border-width: 1px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 90%;
+}
+
+.popup-button:hover {
+    cursor: pointer;
+    border-width: 1px;
+}
+
+.popup-button {
+    float: left;
+}
+
+.popup-row {
+    width: 100%;
+}
+
+
+.logout-form {
+    width: 150px;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.popup-setting-button  {
+    background-color: transparent;
+    color: white;
+    font-family: 'Raleway';
+    font-size: 20px;
+    border: none;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transition: 0.4s;
+    padding: 10px;
+}
+
+.popup-setting-button:hover {
+    color: black;
+    background-color: white;
+}
+.popup-row-form {
+    margin: 0px;
+}
+
+.popup-link {
+    color: white;
+    font-size: 20px;
+    text-decoration: none
+}
+
+.popup-link:hover {
+    text-decoration: underline;
+}
+
+/* posts */
+.main-content-container {
+    width: 90%;
+    position: absolute;
+    left:0;
+    right: 0;
+    margin: 0 auto;
+    top: 50px;
+}
+
+.post-container {
+	column-width: 320px;
+	column-gap: 15px;
+    width: 100%;
+    display: inline-block;
+    margin-top: 50px;
+}
+
+.post {
+    text-align: center;
+    background: #ffffff;
+	transition: .4s;
+    break-inside: avoid;
+    margin-bottom: 20px;
+}
+
+.post-container:hover .post:not(:hover) {
+    opacity: 0.3
+}
+
+.post-title {
+    color: black;
+    text-align: center;
+    font-weight: bolder;
+    font-family: "Vollkorn";
+    font-size: 30px;
+    margin: 0 20px;
+    padding-top: 20px;
+    transition: 0.3s;
+}
+
+.post-title-link {
+    text-decoration: none;
+}
+
+.post-title:hover {
+	text-decoration: underline;
+}
+
+.post-desc,  .post-username {
+    margin: 0 20px;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.post-desc {
+    text-align: left;
+}
+
+.post-image {
+    width: 300px;
+    height: auto;
+}
+
+.post-desc, .post-username, .tag-container {
+    font-family: "Open Sans";
+}
+
+.post-username-link {
+    text-decoration: none;
+    color: black;
+    text-align: left;
+}
+
+.post-username-link:hover {
+    text-decoration: underline;
+}
+
+.tag {
+    position: relative;
+    text-align: center;
+    padding-left: 10px;
+    margin: 0px;
+    cursor: pointer;
+    color: black;
+    z-index: 1;
+}
+
+.tag:hover {
+    text-decoration: underline;
+}
+
+.tag-container {
+    width: 90%;
+    text-align: right;
+    display: inline-flex;
+    margin: 10px auto;
+}
+
+.more-container {
+    font-family: 'Open Sans';
+    text-align: center;
+    cursor: pointer;
+}
+
+.post-container:hover post:not(:hover) {
+	opacity: 0.4;
+}
+
+.more-message {
+    font-size: 25px;   
+    transition: 1s;
+}
+
+.more-message:hover {
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.menu-container {
+    width: 100%;
+    font-family: "Open Sans";
+    font-size: 30px;
+    top: 50px;
+    margin-top: 50px;
+    display: flex;
+}
+
+
+.menu-button i{
+    font-size: 30px;
+}
+
+.menu-button {
+    color: black;
+    font-size: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    padding-right: 5px;
+    text-decoration: none;
+    transition: .5s;
+    background-color: transparent;
+    border-style: none;
+    font-family: 'Open Sans';
+}
+
+.menu-button-selected {
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    border-bottom-width: 2px;
+}
+
+
+.menu-button:hover {
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    border-bottom-width: 2px;
+}
+
+.divider {
+    border-right-style: solid;
+    padding-right: 5px;
+    height: 40px;
+}
+
+
+.upload-container {
+    position: fixed;
+	top: 50px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+
+.upload {
+    overflow-y: auto;
+    position: absolute;
+    z-index: 1;
+    font-family: 'Open Sans';
+    width: 600px;
+    text-align: center;
+    height: 80%;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    margin: 50px auto;
+}
+
+.upload-bg {
+    position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    background-color: black;
+    opacity: 0.9;
+    z-index: 0;
+}
+
+.upload-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.upload-box {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#upload {
+    transition: .4s;
+}
+
+#upload:hover {
+    border-bottom-style: solid;
+}
+
+.upload-tag-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: 20px;
+    width: 300px;
+    font-size: 20px;
+    font-family: "Open Sans"
+}
+
+.upload-tag {
+    width: auto;
+    display: flex;
+    line-height: 20px;
+    align-items: center;
+    flex-direction: row;
+    margin-right: 10px;
+}
+
+.upload-tag p {
+    margin-left: 10PX;
+    margin-right: 10px;
+}
+
+.upload-tag i {
+    margin-left: 10PX;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: 0.6s;
+    font-size: 20px;
+}
+
+.upload-tag i:hover {
+    color: firebrick
+}
+
+.upload-field {
+    width: 300px;
+    font-size: 15px;
+    font-family: "Open Sans"
+}
+
+.upload-pic-field {
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+    width: 260px;
+    font-size: 20px;
+    font-family: "Open Sans"   
+}
+
+.upload-pic-field + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    display: inline-block;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.upload-pic-field + label:hover {
+    border-bottom-style: solid;
+}
+
+.upload-title {
+    font-size: 40px;
+}
+
+.upload-label {
+    text-align: right;
+    margin-right: 10px;
+    width: 150px;
+    font-size: 20px;
+}
+
+.upload-button {
+    font-size: 20px;
+    background-color: transparent;
+    border-style: none;
+    color: white;
+    margin-left: 10px;
+    font-family: "Open Sans";
+    cursor: pointer;
+}
+
+#add-tag:hover {
+    color: seagreen;
+}
+
+.add-container {
+    position: fixed;
+    z-index: 6;
+    bottom: 10%;
+    right: 10%;
+    
+}
+
+.add-photo:hover {
+	box-shadow: 0 4px 10px black;
+}
+
+.add-photo:focus {
+    outline: none;
+}
+
+.add-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 3em;
+    cursor: pointer;
+    transition: 0.4s;
+    background-color: black;
+    text-align: center;
+    padding: 10px;
+    border-style: none;
+    color: white;
+    font-size: 60px;
+	box-shadow: 0 4px 10px rgba(34, 25, 25, 0.4);
+}
+
+/* registration page */
+.reg-label {
+    text-align: right;
+    margin-right: 10px;
+    width: 150px;
+    font-size: 20px;
+}
+
+.reg-area-update {
+    width: 100%;
+    text-align: right;
+}
+
+.reg-field {
+    width: 60%;
+    font-size: 15px;
+    background-color: transparent;
+    border-style: solid;
+    font-family: "Open Sans"
+}
+
+.reg-container {
+    z-index: 1;
+    font-family: 'Open Sans';
+    width: 400px;
+    text-align: center;
+    height: 80%;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    margin: 50px auto;
+}
+
+.reg-title {
+    font-size: 50PX;
+    background-color: read;
+}
+
+.reg-submit {
+    font-size: 20px;
+    background-color: transparent;
+    border-style: solid;
+    border-color: black;
+    color: black;
+    float: right;
+    margin-top: 30px;
+    font-family: "Open Sans";
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.reg-submit:hover {
+    background-color: sandybrown;
+}
+
+.reg-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.reg-area {
+    border-style: solid;
+    border-color: black;
+    resize: none;
+    width: 60%;
+    height: 100px;
+    font-size: 15px;
+    background-color: transparent;
+    border-style: solid;
+    border-width: 2px;
+    font-family: "Open Sans";
+}
+
+.profile-info-container {
+    position: fixed;
+    top: 100px;
+    border-style: solid;
+    border-color: black;
+    width: 22%;
+    padding: 10px;
+    font-family: 'Open Sans';
+    border-width: 1;
+}
+
+.profile-post-container {
+    width: 70%;
+    left: 30%;
+    position: absolute;
+}
+
+.profile-username-label {
+    font-family: 'Vollkorn';
+    font-size: 25px;
+    margin: 10px;
+    text-align: center;
+}
+
+.profile-description-label {
+    text-align: justify;
+    font-size: 20px;
+}
+
+
+.about-container {
+    margin-top: 40px;
+}
+
+.about-title {
+    font-size: 50px;
+    text-align: center;
+    font-family: "Vollkorn"
+}
+
+.about-defn {
+    font-size: 25px;
+    font-family: "Vollkorn";
+    font-style: italic;
+}
+
+.about-desc {
+    font-size: 20px;
+    font-family: 'Raleway';
+}
+
+.about-passed {
+    font-size: 20px;
+    font-family: 'Raleway';
+    transition: 1s;
+}
+
+.about-member:hover {
+    text-decoration: underline;
+}
+
+.about-info {
+    background-color: white;
+    opacity: 0.8;
+    margin: 50px;
+    padding: 10px;
+    width: 60%;
+    margin: auto;
+}
+.image {
+    width:auto;
+    height: auto;
+}
+
+.photo-container {
+    margin: 0 auto;
+    width: 60%;
+    height: 100%;
+    margin-top: 100px;
+    font-family: 'Open Sans';
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.info-container .tag-container {
+    margin-left: 20px;
+}
+
+.photo-name {
+	margin-left: 10px;
+    font-size: 30px;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.photo-title {
+    margin-left: 20px;
+    font-size: 50px;
+    font-family: 'Vollkorn';
+}
+
+.photo-desc {
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.photo-container a {
+    text-decoration: none;
+}
+
+.photo-container a:hover {
+    text-decoration: underline;
+}
+
+.image {
+    border-style: solid;
+    padding: 10px;
+}
+
+.back {
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Open sans';
+    color: black;
+    text-decoration: none;
+    font-size: 30px;
+    position: fixed;
+    top: 75px;
+}
+
+.back:hover {
+    border-bottom-style: solid;
+}
+
+.error-message-container {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 20px;
+    height: 100%;
+    font-family: 'Open Sans';
+}
+
+.error-content {
+    left: 0;
+}
+
+.error-message-container .error-lock-icon {
+    font-size: 150px;
+    z-index: 2;
+    bottom: 50px;
+    position: absolute;
+    transition: 0.6s;
+}
+
+.error-message-container .error-photo-icon {
+    font-size: 300px;
+    color: white;
+    margin: 0 auto;
+}
+
+.error-back {
+    cursor: pointer;
+    font-size: 30px;
+    transition: 0.3s;
+}
+
+.error-back:hover {
+    border-bottom-style: solid;
+}
+
+.visible-icon {
+	font-size: 20%;
+}
