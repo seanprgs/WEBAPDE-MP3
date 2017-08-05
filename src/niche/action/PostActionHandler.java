@@ -13,12 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import niche.bean.Photo;
 import niche.bean.PhotoTag;
+import niche.bean.User;
 import niche.service.PhotoService;
 
 public class PostActionHandler implements ActionHandler {
 	
-	public static File FOLDER = new File("/Users/Sean Paragas/Desktop");
+	public static File FOLDER = new File("D://nicheIMGs");
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -67,6 +69,7 @@ public class PostActionHandler implements ActionHandler {
 		
 		//Create filename to be saved to FOLDER
 		File file = new File(FOLDER, filename);
+	
 		
 		//Save the file
 		InputStream fileInputStream = part.getInputStream();
@@ -74,8 +77,24 @@ public class PostActionHandler implements ActionHandler {
 		fileInputStream.close();
 		
 		//Save photo to db
+		Photo newPhoto = new Photo();
+		newPhoto.setPath(file.getPath());
+		newPhoto.setDescription(description);
+		newPhoto.setTags(photoTags);
+		newPhoto.setTitle(title);
 		
-		//Save tags to db
+		boolean isVisible = true;
+		if(request.getParameter("visibile").equalsIgnoreCase("private"))
+			isVisible = false;
+		newPhoto.setVisible(isVisible);
+		
+		User u = (User)request.getSession().getAttribute("sessionuser");
+		newPhoto.setUser(u);
+		
+		if(PhotoService.addPhoto(newPhoto))
+			System.out.println("Photo uploaded successfully");
+		else
+			System.out.println("Aw.");
 		
 		request.setAttribute("isprivate", false);
 		request.setAttribute("ispublic", true);

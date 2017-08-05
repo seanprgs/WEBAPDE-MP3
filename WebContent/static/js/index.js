@@ -159,7 +159,7 @@ function validateUpload() {
 		isValid = false;
 	}
     
-    if (!$('#pub').is(":checked") || !$('#pri').is(":checked")  ) {
+    if (!$('#pub').is(":checked") && !$('#pri').is(":checked")  ) {
 		message += "did not select if private or public! <br>";
 		isValid = false;
 	}

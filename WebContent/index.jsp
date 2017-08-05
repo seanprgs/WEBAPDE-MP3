@@ -237,8 +237,8 @@
 				                    
 				
 				                    <div class = "upload-row">
-				                        <label name = "description" class = "upload-label">
-				                        visibility </label>
+				                        <label class = "upload-label">
+				                        visibility</label>
 				                        <input id = "pub" name = "visible" class = "box-input" value = "public" class = "upload-box" type = "checkbox">
 				                        public
 				                        <input id = "pri" name = "visible" class = "box-input" value = "private" class = "upload-box" type = "checkbox">
