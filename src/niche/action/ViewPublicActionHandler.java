@@ -2,6 +2,7 @@ package niche.action;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.ServletException;
@@ -15,13 +16,18 @@ import niche.service.PhotoService;
 import niche.service.TagsService;
 import niche.service.UserService;
 
-public class ViewPublicActionHandler implements ActionHandler {
-
+public class ViewPublicActionHandler implements ActionHandler 
+{
+	private static int photoCounter = 0;
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		List<Photo> photos = PhotoService.getNumberOfPhotos(photoCounter, 10);
+		photoCounter += photos.size();
+		
 		request.setAttribute("isprivate", false);
 		request.setAttribute("ispublic", true);
-		request.setAttribute("photos", PhotoService.getAllPublicPhotos());
+		request.setAttribute("photos", photos);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 	
