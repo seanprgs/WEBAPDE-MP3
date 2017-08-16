@@ -32,7 +32,9 @@ public class PostActionHandler implements ActionHandler {
 		String num = request.getParameter("tagNum");
 		//String tag0 = request.getParameter("tag0");
 		
-		int numOfTags = Integer.parseInt(request.getParameter("tagNum"));
+		int numOfTags = 0;
+		if(num!=null)
+			numOfTags = Integer.parseInt(request.getParameter("tagNum"));
 		Set <PhotoTag> photoTags = new HashSet <PhotoTag> ();
 		for(int i = 0; i < numOfTags; i++) {
 			PhotoTag pt = new PhotoTag();
@@ -69,6 +71,7 @@ public class PostActionHandler implements ActionHandler {
 		
 		//Create filename to be saved to FOLDER
 		File file = new File(FOLDER, filename);
+		
 	
 		
 		//Save the file
@@ -78,13 +81,13 @@ public class PostActionHandler implements ActionHandler {
 		
 		//Save photo to db
 		Photo newPhoto = new Photo();
-		newPhoto.setPath(file.getPath());
+		newPhoto.setPath(file.getPath().replace("\\", "/"));
 		newPhoto.setDescription(description);
 		newPhoto.setTags(photoTags);
 		newPhoto.setTitle(title);
 		
 		boolean isVisible = true;
-		if(request.getParameter("visibile").equalsIgnoreCase("private"))
+		if(request.getParameter("visible").equalsIgnoreCase("private"))
 			isVisible = false;
 		newPhoto.setVisible(isVisible);
 		

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -52,6 +53,7 @@ class URLPatterns {
 							URLPatterns.PHOTO,
 							URLPatterns.WELCOME,
 							URLPatterns.SEARCH} )
+@MultipartConfig(location="D://nicheIMGs")
 public class NicheController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private HashMap <String, ActionHandler> actions;
