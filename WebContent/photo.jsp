@@ -153,7 +153,7 @@
 					</c:choose>
 					
                      <c:choose>
-						<c:when test = "${sessionScope.sessionuser.userid == photo.user.userid}">
+						<c:when test = "${sessionScope.sessionuser.userid == photo.user.userid} && photo.visible == '0'">
 		                    <div class = "tag-container">
 			                    <form action = "sharephoto" method = "POST">			
 			                    	<input type = "text" class = "users" name="user">

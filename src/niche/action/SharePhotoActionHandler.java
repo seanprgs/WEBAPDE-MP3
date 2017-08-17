@@ -17,10 +17,10 @@ public class SharePhotoActionHandler implements ActionHandler {
 	{
 		User u = UserService.getUserByName(request.getParameter("user"));
 		int photoid = Integer.parseInt(request.getParameter("photoid"));
-		//u
-		if(u != null) {
+		
+		//check if username does not exist or if user shared photo to himself/herself
+		if(u != null && u.getUserid() != PhotoService.getPhoto(photoid).getUser().getUserid())
 			PhotoService.sharePhoto(photoid, u);
-		}
 		
 		request.setAttribute("photo", PhotoService.getPhoto(photoid));
 		request.getRequestDispatcher("photo.jsp").forward(request, response);

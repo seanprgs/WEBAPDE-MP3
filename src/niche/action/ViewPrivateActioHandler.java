@@ -11,14 +11,18 @@ import niche.service.PhotoService;
 
 public class ViewPrivateActioHandler implements ActionHandler 
 {
-	
+	private static int photoCounter = 0;
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		
+	 	User user = (User) request.getSession().getAttribute("sessionuser");
+	 	List<Photo> photos = PhotoService.getPrivatePhotosOfUser(user.getUserid(), photoCounter, 15);
+		photoCounter += photos.size();
+	 	
 		request.setAttribute("isprivate", true);
 	 	request.setAttribute("ispublic", false);
-	 	User user = (User) request.getSession().getAttribute("sessionuser");
-	 	
-	 	request.setAttribute("photos", PhotoService.getPrivatePhotosOfUser(user.getUserid()));
+	 	request.setAttribute("photos", photos);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 }

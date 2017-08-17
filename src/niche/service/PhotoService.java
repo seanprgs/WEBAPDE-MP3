@@ -112,7 +112,7 @@ private static final String COL_USERID = "user_userid";
 		return photos;
 	}
 	
-	public static List <Photo> getPrivatePhotosOfUser(int userid) {
+	public static List <Photo> getPrivatePhotosOfUser(int userid, int photoCounter, int size) {
 		List<Photo> photos = new ArrayList<Photo>();
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("mysqldb");
@@ -122,10 +122,35 @@ private static final String COL_USERID = "user_userid";
 		
 		try {
 			trans.begin();
-			TypedQuery<Photo> q = em.createQuery("FROM photos where " + COL_VISIBLE + " = '0' AND " +
-														COL_USERID + " = " + userid, Photo.class);
-			photos = q.getResultList();
+			//need to get private photos uploaded by user AND private photos shared to user
+			TypedQuery<Photo> q = em.createQuery("FROM photos where " + COL_VISIBLE + " = '0'", Photo.class);
+			List<Photo> queryResult = q.getResultList();
+			
+			Photo temp = null;
+			
+			for(int i = 0; i < queryResult.size(); i++)
+			{
+				temp = queryResult.get(i);
+				
+				//check if photo shared to user
+				for(User u : temp.getHasAccess())
+				{
+					if(u.getUserid() == userid)
+						photos.add(temp);
+				}
+				
+				//check if photo uploaded by user as private
+				if(temp.getUser().getUserid() == userid)
+					photos.add(temp);
+			}
+			
 			Collections.reverse(photos);
+			
+			//get only N(size) queries
+			if(size > photos.size() - photoCounter)//check if number of entries is less than size (capacity)
+				photos = photos.subList(photoCounter, photos.size()); //sublist(from, to) from = inclusive, to = exclusive
+			else
+				photos = photos.subList(photoCounter, photoCounter + size);
 			trans.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -346,7 +371,11 @@ private static final String COL_USERID = "user_userid";
 			p = em.find(Photo.class, id);
 			
 			Set<User> hasAccess = p.getHasAccess();
-			hasAccess.add(giveAccess);
+			
+			//check if photo has already been shared with user
+			if(!hasAccess.contains(giveAccess));
+				hasAccess.add(giveAccess);
+				
 			p.setHasAccess(hasAccess);
 			
 			em.merge(p);
