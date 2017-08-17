@@ -78,6 +78,39 @@ private static final String COL_USERID = "user_userid";
 		
 		return photos;
 	}
+
+	public static List<Photo> getNumberOfPhotosPublic(int photoCounter, int size) 
+	{
+		List<Photo> photos = new ArrayList<Photo>();
+		
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("mysqldb");
+		EntityManager em = emf.createEntityManager();
+		
+		EntityTransaction trans = em.getTransaction();
+		
+		try {
+			trans.begin();
+			TypedQuery<Photo> q = em.createQuery("FROM photos where " + COL_VISIBLE + " = '1'", Photo.class);
+			List<Photo> result = q.getResultList();
+			
+			//reverse the query to have the latest entry in the first index of the list
+			Collections.reverse(result);
+			
+			//get only N(size) queries
+			if(size > result.size() - photoCounter)//check if number of entries is less than size (capacity)
+				photos = result.subList(photoCounter, result.size()); //sublist(from, to) from = inclusive, to = exclusive
+			else
+				photos = result.subList(photoCounter, photoCounter + size);
+			
+			trans.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			em.close();
+		}
+		
+		return photos;
+	}
 	
 	public static List <Photo> getPrivatePhotosOfUser(int userid) {
 		List<Photo> photos = new ArrayList<Photo>();

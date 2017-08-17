@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import niche.bean.User;
 import niche.service.PhotoService;
 
-public class ViewPrivateActioHandler implements ActionHandler {
-
+public class ViewPrivateActioHandler implements ActionHandler 
+{
+	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("isprivate", true);

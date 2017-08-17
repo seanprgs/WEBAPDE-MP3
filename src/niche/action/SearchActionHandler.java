@@ -26,7 +26,7 @@ public class SearchActionHandler implements ActionHandler {
 			int a = 0;
 			while(tags.hasNext()) {
 				PhotoTag ptag = tags.next();
-				if(ptag.getTag().equals(tag)) {
+				if(ptag.getTag().equalsIgnoreCase(tag)) {
 					retain = true;
 				}
 				

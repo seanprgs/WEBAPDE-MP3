@@ -22,7 +22,7 @@ public class ViewPublicActionHandler implements ActionHandler
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		List<Photo> photos = PhotoService.getNumberOfPhotos(photoCounter, 10);
+		List<Photo> photos = PhotoService.getNumberOfPhotosPublic(photoCounter, 10);
 		photoCounter += photos.size();
 		
 		request.setAttribute("isprivate", false);
