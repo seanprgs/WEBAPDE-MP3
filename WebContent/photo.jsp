@@ -153,13 +153,15 @@
 					</c:choose>
 					
                      <c:choose>
-						<c:when test = "${not empty sessionScope.sessionuser}">
+						<c:when test = "${sessionScope.sessionuser.userid == photo.user.userid}">
 		                    <div class = "tag-container">
-                        					
-			                    <input list="users" class = "users" name="users">
-			                        <button class = "share">
-			                            share 
-			                    </button>
+			                    <form action = "sharephoto" method = "POST">			
+			                    	<input type = "text" class = "users" name="user">
+			                    	<input type="hidden" name="photoid" value="${photo.photoid}"/>
+			                        <button type = "submit" class = "share">
+										share
+			                    	</button>
+			                    </form>
                     		</div>   
 						</c:when>
 					</c:choose>

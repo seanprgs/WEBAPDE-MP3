@@ -3,6 +3,7 @@ package niche.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,6 +12,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import niche.bean.Photo;
+import niche.bean.User;
 
 public class PhotoService 
 {
@@ -291,4 +293,38 @@ private static final String COL_USERID = "user_userid";
 		return photos;
 	}
 
+	public static boolean sharePhoto(int id, User giveAccess)
+	{
+		boolean shared = false;
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("mysqldb");
+		EntityManager em = emf.createEntityManager();
+		
+		EntityTransaction trans = em.getTransaction();
+		
+		try {
+			trans.begin();
+			
+			//find photo
+			//get its hasAccesss
+			//add giveAccess
+			//merge
+			
+			Photo p = null;
+			p = em.find(Photo.class, id);
+			
+			Set<User> hasAccess = p.getHasAccess();
+			hasAccess.add(giveAccess);
+			p.setHasAccess(hasAccess);
+			
+			em.merge(p);
+			
+			trans.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			em.close();
+		}
+		
+		return shared;
+	}
 }

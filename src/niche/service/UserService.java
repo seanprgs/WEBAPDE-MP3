@@ -192,6 +192,37 @@ public class UserService
 		return user;
 	}
 	
+	public static User getUserByName(String username)
+	{
+		User u = null;
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("mysqldb");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		
+		try {
+			trans.begin();
+			String query = "FROM users where " + COL_USERNAME + " = :username";;
+			TypedQuery<User> q = em.createQuery(query, User.class);
+			q.setParameter("username", username);
+			List <User> users = q.getResultList();
+			
+			if(users != null && users.size() != 0) {
+				u = users.get(0);
+			}
+			trans.commit();
+			
+		} catch(Exception e) {
+			if(trans != null) {
+				trans.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			em.close();
+		}
+		
+		return u;
+	}
+	
 	public static void main (String[] args) {
 		
 		List<User> users = getAllUsers();
