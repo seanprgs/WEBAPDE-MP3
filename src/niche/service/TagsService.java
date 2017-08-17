@@ -48,7 +48,7 @@ public class TagsService
 		
 		try {
 			trans.begin();
-			em.persist(pt);
+			em.merge(pt);
 			
 			trans.commit();
 			added = true;

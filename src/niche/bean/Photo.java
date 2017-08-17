@@ -36,11 +36,11 @@ public class Photo
 	@ManyToOne(cascade = CascadeType.ALL)
 	private User user;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER )
+	@ManyToMany(cascade = CascadeType.MERGE, fetch=FetchType.EAGER )
 	@JoinTable(name = "photo_tags", joinColumns = { @JoinColumn(name = "photoid") }, inverseJoinColumns = { @JoinColumn(name = "tagid") })
 	private Set <PhotoTag> tags;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER )
+	@ManyToMany(cascade = CascadeType.MERGE, fetch=FetchType.EAGER )
 	@JoinTable(name = "photo_access", joinColumns = { @JoinColumn(name = "photoid") }, inverseJoinColumns = { @JoinColumn(name = "userid") })
 	private Set <User> hasAccess;
 	
@@ -114,6 +114,10 @@ public class Photo
 
 	public void setHasAccess(Set <User> hasAccess) {
 		this.hasAccess = hasAccess;
+	}
+	
+	public void addPhotoTag(PhotoTag tag) {
+		tags.add(tag);
 	}
 
 	@Override

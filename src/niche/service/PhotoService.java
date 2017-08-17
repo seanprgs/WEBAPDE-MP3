@@ -195,7 +195,9 @@ private static final String COL_USERID = "user_userid";
 			p.setPath(newinfo.getPath());
 			p.setVisible(newinfo.isVisible());
 			p.setUser(newinfo.getUser());
+			p.setTags(newinfo.getTags());
 			
+			em.merge(p);
 			trans.commit();
 			updated = true;
 		} catch(Exception e) {

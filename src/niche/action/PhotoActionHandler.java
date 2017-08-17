@@ -21,7 +21,7 @@ public class PhotoActionHandler implements ActionHandler {
 		
 		
 		if(photo.isVisible()) {
-			request.setAttribute("photo", PhotoService.getPhoto(id));
+			request.getSession().setAttribute("photo", PhotoService.getPhoto(id));
 			request.getRequestDispatcher("photo.jsp").forward(request, response);
 		} else {
 			if(user == null) {

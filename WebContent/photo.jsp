@@ -115,7 +115,7 @@
                  </div>
                      <div class = "info-container">
               		<a class = "photo-name" href = "profile?=${photo.user.userid}"> <label class = "photo-name">@${photo.user.username} </label> </a> 
-                     <label class = "photo-title"> ${photo.title } </label>
+                     <label class = "photo-title"> ${photo.title} </label>
                      <label class = "photo-desc"> ${photo.description} </label>
 					
 					<div class = "tag-container">
@@ -141,18 +141,13 @@
                      <c:choose>
 						<c:when test = "${sessionScope.sessionuser.userid == photo.user.userid}">
 		                    <div class = "tag-container">
-                        		
-			                    <input list="users" class = "users" name="users">
-			                      <datalist id="users">
-			                        <option value="tag1">
-			                        <option value="tag2">
-			                        <option value="tag3">
-			                        <option value="tag4">
-			                        <option value="tag5">
-			                      </datalist> 
-			                        <button class = "share">
+                        		<form action="addtag" method="POST">
+			                    <input type="text" class = "users" name="tag">
+			                      <input type="hidden" name="photoid" value="${photo.photoid}"/>
+			                        <button class = "share" type="submit">
 			                            Add tag 
 			                    </button>
+							</form>
                     		</div>   
 						</c:when>
 					</c:choose>
@@ -162,13 +157,6 @@
 		                    <div class = "tag-container">
                         					
 			                    <input list="users" class = "users" name="users">
-			                      <datalist id="users">
-			                        <option value="user1">
-			                        <option value="user2">
-			                        <option value="user3">
-			                        <option value="user4">
-			                        <option value="user5">
-			                      </datalist> 
 			                        <button class = "share">
 			                            share 
 			                    </button>
