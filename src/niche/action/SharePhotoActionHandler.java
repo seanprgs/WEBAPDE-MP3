@@ -22,6 +22,7 @@ public class SharePhotoActionHandler implements ActionHandler {
 			PhotoService.sharePhoto(photoid, u);
 		}
 		
+		request.setAttribute("photo", PhotoService.getPhoto(photoid));
 		request.getRequestDispatcher("photo.jsp").forward(request, response);
 	}
 

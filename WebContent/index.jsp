@@ -167,7 +167,7 @@
 	             		
 	             		<p class = "post-desc"> ${item.description} </p>
 	
-	             		<img class = "post-image" src = "${item.path}"/>
+	             		<img class = "post-image" src = "${pageContext.request.contextPath}/files/${item.path}"/>
 	
 						<div class = "tag-container">
 							<c:choose>

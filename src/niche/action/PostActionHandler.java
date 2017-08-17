@@ -23,7 +23,7 @@ import niche.service.TagsService;
 
 public class PostActionHandler implements ActionHandler {
 	
-	public static File FOLDER = new File("D://nicheIMGs");
+	public static File FOLDER = new File("/Users/Jam/Desktop/");
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -109,7 +109,8 @@ public class PostActionHandler implements ActionHandler {
 		
 		//Save photo to db
 		Photo newPhoto = new Photo();
-		newPhoto.setPath(file.getPath().replace("\\", "/"));
+//		newPhoto.setPath(path);
+		newPhoto.setPath(filename);
 		newPhoto.setDescription(description);
 		newPhoto.setTags(photoTags);
 		newPhoto.setTitle(title);

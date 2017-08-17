@@ -111,7 +111,7 @@
              
              <div class = "photo-container"> 
                  <div class = "image-container">
-                    <img class = "image" src ="${photo.path}">
+                    <img class = "image" src ="${pageContext.request.contextPath}/files/${photo.path}">
                  </div>
                      <div class = "info-container">
               		<a class = "photo-name" href = "profile?=${photo.user.userid}"> <label class = "photo-name">@${photo.user.username} </label> </a> 

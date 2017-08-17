@@ -44,6 +44,7 @@ public class AddTagActionHandler implements ActionHandler {
 		System.out.println("\n"+ photo.toString());
 		PhotoService.updatePhoto(photo.getPhotoid(), photo);
 		
+		request.setAttribute("photo", photo);
 		request.getRequestDispatcher("photo.jsp").forward(request, response);
 	}
 

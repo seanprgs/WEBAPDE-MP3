@@ -1,6 +1,9 @@
 package niche.servlet;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.file.Files;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
@@ -58,8 +61,8 @@ class URLPatterns {
 							URLPatterns.WELCOME,
 							URLPatterns.SEARCH,
 							URLPatterns.ADDTAG,
-							URLPatterns.SHAREPHOTO} )
-@MultipartConfig(location="D://nicheIMGs")
+							URLPatterns.SHAREPHOTO})
+@MultipartConfig(location="C:\\Users\\Jam\\Desktop")
 public class NicheController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private HashMap <String, ActionHandler> actions;
@@ -84,8 +87,9 @@ public class NicheController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
 		actions.get(request.getServletPath()).execute(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
