@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.ServletException;
@@ -17,6 +19,7 @@ import niche.bean.Photo;
 import niche.bean.PhotoTag;
 import niche.bean.User;
 import niche.service.PhotoService;
+import niche.service.TagsService;
 
 public class PostActionHandler implements ActionHandler {
 	
@@ -35,11 +38,38 @@ public class PostActionHandler implements ActionHandler {
 		int numOfTags = 0;
 		if(num!=null)
 			numOfTags = Integer.parseInt(request.getParameter("tagNum"));
-		Set <PhotoTag> photoTags = new HashSet <PhotoTag> ();
-		for(int i = 0; i < numOfTags; i++) {
+		Set <PhotoTag> photoTags = new HashSet <PhotoTag> ();	//final
+		
+		ArrayList<String> filtered = new ArrayList<String>();	//filtered
+		List<PhotoTag> dbTags = TagsService.getAllPhotoTags();	//from db
+		
+		//get all tags to be added
+		ArrayList<String> tags = new ArrayList<String>();
+		for(int i = 0; i < numOfTags; i++)
+		{
+			tags.add(request.getParameter("tag"+i));
+		}
+		
+		//filter exsiting db tags
+		for(int i = 0; i < dbTags.size(); i++) {
+			if(tags.contains(dbTags.get(i).getTag())) {
+				photoTags.add(dbTags.get(i));
+				//remove added db tags
+				tags.remove(dbTags.get(i).getTag());
+			}
+		}
+		
+		//filter new tags
+		for(int i = 0; i < tags.size(); i++) {
+			if(!filtered.contains(tags.get(i)))
+				filtered.add(tags.get(i));
+		}
+		
+		for(int i = 0; i < filtered.size(); i++) {
 			PhotoTag pt = new PhotoTag();
-			pt.setTag(request.getParameter("tag"+i));
+			pt.setTag(filtered.get(i));
 			photoTags.add(pt);
+			System.out.println(pt.toString());
 		}
 		
 		//Retrieve file
@@ -71,8 +101,6 @@ public class PostActionHandler implements ActionHandler {
 		
 		//Create filename to be saved to FOLDER
 		File file = new File(FOLDER, filename);
-		
-	
 		
 		//Save the file
 		InputStream fileInputStream = part.getInputStream();

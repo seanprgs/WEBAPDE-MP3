@@ -111,7 +111,7 @@
              
              <div class = "photo-container"> 
                  <div class = "image-container">
-                    <img class = "image" src ="${photo.path }">
+                    <img class = "image" src ="${photo.path}">
                  </div>
                      <div class = "info-container">
               		<a class = "photo-name" href = "profile?=${photo.user.userid}"> <label class = "photo-name">@${photo.user.username} </label> </a> 
@@ -120,7 +120,7 @@
 					
 					<div class = "tag-container">
 						<i class = "fa fa-user">
-							<c:forEach items = "${photo.hasAccess }" var = "item"> 
+							<c:forEach items = "${photo.hasAccess}" var = "item"> 
 								<a class = "tag" href = "profile?user=${item.userid}">
 									@${item.username}
 								</a>
@@ -141,7 +141,7 @@
                      <c:choose>
 						<c:when test = "${sessionScope.sessionuser.userid == photo.user.userid}">
 		                    <div class = "tag-container">
-                        					
+                        		
 			                    <input list="users" class = "users" name="users">
 			                      <datalist id="users">
 			                        <option value="tag1">

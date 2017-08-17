@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import niche.action.AboutActionHandler;
 import niche.action.ActionHandler;
+import niche.action.AddTagActionHandler;
 import niche.action.LoginActionHandler;
 import niche.action.LogoutActionHandler;
 import niche.action.PhotoActionHandler;
@@ -19,6 +20,7 @@ import niche.action.PostActionHandler;
 import niche.action.ProfileActionHandler;
 import niche.action.RegisterActionHandler;
 import niche.action.SearchActionHandler;
+import niche.action.SharePhotoActionHandler;
 import niche.action.ViewPrivateActioHandler;
 import niche.action.ViewPublicActionHandler;
 import niche.action.WelcomeActionHandler;
@@ -39,6 +41,8 @@ class URLPatterns {
 	public final static String PHOTO = "/photo";
 	public final static String WELCOME = "/welcome";
 	public static final String SEARCH = "/search";
+	public final static String ADDTAG = "/addtag";
+	public final static String SHAREPHOTO ="/sharephoto";
 	
 }
 
@@ -52,7 +56,9 @@ class URLPatterns {
 							URLPatterns.PROFILE,
 							URLPatterns.PHOTO,
 							URLPatterns.WELCOME,
-							URLPatterns.SEARCH} )
+							URLPatterns.SEARCH,
+							URLPatterns.ADDTAG,
+							URLPatterns.SHAREPHOTO} )
 @MultipartConfig(location="D://nicheIMGs")
 public class NicheController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -73,6 +79,8 @@ public class NicheController extends HttpServlet {
         actions.put(URLPatterns.PROFILE, new ProfileActionHandler());
         actions.put(URLPatterns.WELCOME, new WelcomeActionHandler());
         actions.put(URLPatterns.SEARCH, new SearchActionHandler());
+        actions.put(URLPatterns.ADDTAG, new AddTagActionHandler());
+        actions.put(URLPatterns.SHAREPHOTO, new SharePhotoActionHandler());
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -35,9 +35,6 @@ public class PhotoActionHandler implements ActionHandler {
 				request.getRequestDispatcher("error.jsp").forward(request, response);
 			}
 		}
-		
-		
-		
 	}
 
 }
