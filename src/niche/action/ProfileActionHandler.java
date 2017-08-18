@@ -14,7 +14,7 @@ public class ProfileActionHandler implements ActionHandler {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		User user = UserService.getUser(Integer.parseInt(request.getParameter("user")));
+		User user = UserService.getUser(Integer.parseInt(request.getParameter("id")));
 	 	User sessionuser = (User) request.getSession().getAttribute("sessionuser");
 		
 		if(sessionuser == null) {

@@ -33,11 +33,9 @@ public class LoginActionHandler implements ActionHandler {
 				usernameCookie.setMaxAge(60*60*24*21);
 				response.addCookie(usernameCookie);
 			}
+			
+		 	request.setAttribute("photos", PhotoService.getPhotosSeenByUser(user.getUserid(), 0, 15));
 		}
-
-	 	request.setAttribute("photos", PhotoService.getAllPublicPhotos());
-		request.setAttribute("isprivate", false);
-	 	request.setAttribute("ispublic", true);
 		
 		dispatcher.forward(request, response);
 	}

@@ -4,14 +4,23 @@ var wordCount = 0;
 
 $(function () {
     var string = window.location.href;
-    if(!string.endsWith('register'))
-        $('.popup-form-wrapper').hide();
     
+    $('.user-view').hide();
+    $('textarea').val("");
     
     $('.user').click(function () {
-        $('.popup-form-wrapper').slideToggle();
+        $('.user-view').slideToggle();
     });
     
+    $('.post').click(function(){
+        var id = $(this).attr('id');
+        window.location.href = "photo?id="+id;
+    });
+    
+    $('.img').on('error', function(){
+        $(this).attr("src", "static/res/no-image.jpg");
+    });
+      
     $('#add-tag').click(function () {
         var titleStr = $('#tag-field').val();
         
@@ -48,18 +57,6 @@ $(function () {
         }
     });
 
-    $("input:checkbox").on('click', function() {
-        var $box = $(this);
-        if ($box.is(":checked")) {
-        var group = "input:checkbox[name='" + $box.attr("name") + "']";
-            
-        $(group).prop("checked", false);
-            $box.prop("checked", true);
-        } else {
-            $box.prop("checked", false);
-        }
-    });
-    
     $('.upload-container').hide();
     
     $('.add-photo').click(function() {
@@ -68,14 +65,20 @@ $(function () {
         if(toggle) {
             $('.add-photo').rotate(0);
             toggle = false;
+            $('.add-photo').css("background-color", "black");
+            $('.add-photo').css("color", "white");
         } else {
+            $('')
+            
             $('.add-photo').rotate(45);
             $('#file').attr('src', '#');
+            $('input').val("");
+            $('#preview').attr("src", "#");
+            $('.add-photo').css("background-color", "firebrick");
+            $('.add-photo').css("color", "white");
             toggle = true;
         }
     });
-    
-    $('.reg-area').val("");
 
     $("#file").change(function(){
         readURL(this);
@@ -83,10 +86,8 @@ $(function () {
 })
 
 function readURL(input) {
-
     if (input.files && input.files[0]) {
         var reader = new FileReader();
-
         reader.onload = function (e) {
             $('#preview').attr('src', e.target.result);
         }
@@ -157,12 +158,7 @@ function validateUpload() {
     if (title.trim() == "") {
 		message += "no title input <br>";
 		isValid = false;
-	}
-    
-    if (!$('#pub').is(":checked") && !$('#pri').is(":checked")  ) {
-		message += "did not select if private or public! <br>";
-		isValid = false;
-	}
+    }
 	
 	$('#warning-upload').html(message);
     if(!isValid)

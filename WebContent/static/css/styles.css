@@ -18,6 +18,12 @@
     z-index: -1;
 }
 
+.end {
+	width: 100%;
+	height: 10px;
+	background-color: black;	
+}
+
 #overlay {
     position: fixed;
 	top: 0;
@@ -45,17 +51,25 @@
     color: white;
 }
 
-.nav-bar {
+#nav-bar {
     position: fixed;
     width: 100%;
     height: 50px;
     left: 0;
-    z-index: 7;
+    z-index: 3;
     top: 0;
-    
 }
 
-.nav-bg {
+#nav-bar .main {
+    width: 100%;
+    opacity: 1;
+    z-index: 8;
+    height: 50px;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+#nav-bar .bg {
     background: black;
     width: 100%;
     opacity: 1;
@@ -102,18 +116,14 @@
     text-decoration: none;
     height: 46px;
     font-size: 20px;
+    display: flex;
+    align-content: center;
     transition: 0.3s;
 }
 
 .nav-home:hover {
     border-bottom-style: solid;
     border-bottom-color: white;
-}
-
-.nav-home {
-    display: flex;
-    align-content: center;
-    
 }
 
 .nav-left {
@@ -132,7 +142,7 @@
     align-items: center;
 }
 
-.nav-center {
+.nav-search {
     width: 100%;
     border-left-style: solid;
     border-right-style: solid;
@@ -143,23 +153,41 @@
     flex-direction: row;
 }
 
+.nav-center {
+    margin: auto;
+    width: 250px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    flex-grow: 4;
+    transition: 1s;
+}
+
+
 .tag-container .tag {
     font-family: "Open Sans";
 }
 
 .search {
-    
+    font-family: 'Open Sans';
 }
 
-.share {
+#search-icon {
+	width: 20%;
+}
+
+.button-photo {
+    width: 25%;
     border-style: none;
     background-color: black;
     opacity: 0.8;
     color: white;
     font-family: "Open Sans";
-    padding: 10px;
+    padding: 0px 5px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 25px;
     transition: 0.5s;
 }
 
@@ -167,8 +195,9 @@
     opacity: 1.0;
 }
 
-.users {
+.field-photo {
     font-size: 20px;
+    width: 75%;
     font-family: "Open Sans";
     background-color: transparent;
     border-color: black;
@@ -180,25 +209,11 @@
     color: white;
 }
 
-
-
-.nav-center-wrapper {
-    margin: auto;
-    width: 30%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    transition: 1s;
-}
-
 .nav-field {
     background-color: transparent;
     border-color: transparent;
     font-size: 120%;
-    width: 70%;
+    width: 80%;
     margin: 0;
     color: white;
     padding-left: 10px;
@@ -213,12 +228,6 @@
     text-align: center;
     color: white;
     cursor: pointer;
-}
-
-#search {
-    background-color: transparent;
-    border-color: transparent;
-    font-size: 120%;
 }
 
 .user {
@@ -266,8 +275,8 @@
    color:    #9A9A9A;
 }
 
-/* popup [login, logout] dropdown */
-.popup-form-wrapper {
+/* [login, logout] dropdown */
+.settings-wrapper, .login-form-wrapper {
     position: absolute;
     right: 50px;
     top: 50px;
@@ -282,37 +291,37 @@
 
 .warning {
 	color: firebrick;
+    font-weight: bolder;
     text-align: center;
-    margin: 0px;
-    width: 100%;
+    margin: 10 auto;
+    margin-top: 0;
+    width: 300px;
+    width: 60%;
 }
 
-.popup-form {
+.login-form {
     margin: 0px;
     margin-bottom: 5px;
 }
 
-.popup-form, .popup-field, .popup-button {
+.login-form, .login-field, .login-button {
     font-size: 20px;
     font-family: 'Raleway';
     color: white;
 }
 
-.popup-field {
+.login-field {
     margin-top: 5px;
     margin-bottom: 5px;
     width: 90%;
 }
 
-.popup-label {
-    padding-left: 10px;
-    padding-right: 10px;
-}
 
-.popup-check {
+
+.login-check {
     margin-left: 10px;
 }
-.popup-button, .popup-link, .popup-field {
+.login-button, .login-link, .login-field {
     margin-top: 5px;
     margin-left: 10px;
     margin-bottom: 5px;
@@ -320,7 +329,7 @@
     transition: 1s;
 }
 
-.popup-link {
+.login-link {
     cursor: pointer;
     margin: 0;
     margin-left: 5px;
@@ -328,7 +337,7 @@
     border: none;
 }
 
-.popup-button {
+.login-button {
     color: white;
     border-width: 1px;
     padding-left: 20px;
@@ -336,85 +345,103 @@
     width: 90%;
 }
 
-.popup-button:hover {
+.login-button:hover {
     cursor: pointer;
     border-width: 1px;
 }
 
-.popup-button {
+.login-button {
     float: left;
 }
 
-.popup-row {
+.login-row {
     width: 100%;
 }
 
 
-.logout-form {
+.settings-wrapper {
     width: 150px;
     display: inline-flex;
     flex-direction: column;
 }
 
-.popup-setting-button  {
+.user-setting-button  {
     background-color: transparent;
     color: white;
     font-family: 'Raleway';
+    text-decoration: none;
+    text-align: center;
     font-size: 20px;
     border: none;
-    width: 100%;
     height: 100%;
     cursor: pointer;
     transition: 0.4s;
     padding: 10px;
 }
 
-.popup-setting-button:hover {
+
+
+.settings-wrapper .logout-button {
+    width: 100%;
+}
+
+.user-setting-button:hover {
     color: black;
     background-color: white;
 }
-.popup-row-form {
+.login-row-form {
     margin: 0px;
 }
+.login-label {
+    margin: 0px 10px;
+}
 
-.popup-link {
+.login-link {
     color: white;
     font-size: 20px;
     text-decoration: none
 }
 
-.popup-link:hover {
+.login-link:hover {
     text-decoration: underline;
 }
 
 /* posts */
 .main-content-container {
     width: 90%;
+    min-width: 630px;
     position: absolute;
     left:0;
     right: 0;
-    margin: 0 auto;
+    z-index: 2;
+    margin: 50px auto;
     top: 50px;
 }
 
+.user-view {
+	position: absolute;
+	z-index: 10;
+}
 .post-container {
-	column-width: 320px;
+	column-width: 200px;
 	column-gap: 15px;
     width: 100%;
     display: inline-block;
-    margin-top: 50px;
+    margin: 10px;
 }
 
-.post {
+.post {    
+    font-family: "Open Sans";
     text-align: center;
     background: #ffffff;
-	transition: .4s;
+	transition: .6s;
     break-inside: avoid;
-    margin-bottom: 20px;
+    width: 200px;
+    margin: 5px;
 }
 
-.post-container:hover .post:not(:hover) {
-    opacity: 0.3
+.post:hover {
+   box-shadow: 1px 1px 1px 0px #000000;
 }
 
 .post-title {
@@ -447,13 +474,12 @@
 }
 
 .post-image {
-    width: 300px;
+    margin: 10px auto;
+    width: 180px;
     height: auto;
 }
 
-.post-desc, .post-username, .tag-container {
-    font-family: "Open Sans";
-}
+
 
 .post-username-link {
     text-decoration: none;
@@ -480,10 +506,10 @@
 }
 
 .tag-container {
-    width: 90%;
+    width: 100%;
     text-align: right;
     display: inline-flex;
-    margin: 10px auto;
+    margin: 10px 0px;
 }
 
 .more-container {
@@ -506,12 +532,11 @@
     font-weight: bolder;
 }
 
-.menu-container {
+.header-container {
     width: 100%;
     font-family: "Open Sans";
     font-size: 30px;
-    top: 50px;
-    margin-top: 50px;
+    margin: 10px;
     display: flex;
 }
 
@@ -578,7 +603,9 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
-    margin: 50px auto;
+    margin: 0px auto;
+    margin-top: 20px;
+    margin-bottom: 100px;
 }
 
 .upload-bg {
@@ -596,6 +623,7 @@
     display: flex;
     flex-wrap: wrap;
     margin-top: 10px;
+    width: 500px;
 }
 
 .upload-box {
@@ -617,40 +645,47 @@
     flex-wrap: wrap;
     font-size: 20px;
     width: 300px;
-    font-size: 20px;
+    font-size: 15px;
     font-family: "Open Sans"
 }
 
 .upload-tag {
+    border-style: solid;
+    border-width: 1px;
     width: auto;
-    display: flex;
-    line-height: 20px;
-    align-items: center;
+    line-height: 25px;
     flex-direction: row;
-    margin-right: 10px;
+    flex-grow: 5;
+    margin: 1px;
+    align-items: center;
+    padding: 0px 5px;
 }
 
 .upload-tag p {
-    margin-left: 10PX;
-    margin-right: 10px;
+    margin-left: 5PX;
+    position: absolute;
+    left: 0px;
+    margin-right: 5px;
 }
 
 .upload-tag i {
+    color: white;
     margin-left: 10PX;
-    margin-right: 10px;
     cursor: pointer;
-    transition: 0.6s;
+    transition: 0.4s;
     font-size: 20px;
 }
 
-.upload-tag i:hover {
-    color: firebrick
+.upload-tag i:hover{
+    color: firebrick;
 }
 
 .upload-field {
-    width: 300px;
+    width: 280px;
     font-size: 15px;
-    font-family: "Open Sans"
+    font-family: "Open Sans";
+    padding: 0px 10px;
+    resize: none;
 }
 
 .upload-pic-field {
@@ -699,6 +734,15 @@
     cursor: pointer;
 }
 
+#add-tag {
+    background-color: black;
+    margin: 0px;
+    width: 40px;
+    transition: 0.5s;
+}
+
+
+
 #add-tag:hover {
     color: seagreen;
 }
@@ -712,14 +756,19 @@
 }
 
 .add-photo:hover {
-	box-shadow: 0 4px 10px black;
+    text-align: center;
+    align-content: center;
+    padding: 5px;
 }
 
 .add-photo:focus {
     outline: none;
 }
 
-.add-photo {
+.add-photo {   
+    text-align: center;
+    align-content: center;
+    padding: 5px;
     width: 80px;
     height: 80px;
     border-radius: 3em;
@@ -736,18 +785,30 @@
 
 /* registration page */
 .reg-label {
-    text-align: right;
-    margin-right: 10px;
-    width: 150px;
+    width: 120px;
     font-size: 20px;
 }
 
-.reg-area-update {
-    width: 100%;
-    text-align: right;
+.reg-bg {
+    background-color: white;
+    z-index: 0;
+    font-family: 'Open Sans';
+    width: 600px;
+    height: 400px;
+    text-align: center;
+    height: 500px;
+	top: 0;
+	bottom: 0;
+    opacity: 0.8;
+	left: 0;
+	right: 0;
+    position: absolute;
+    margin: 50px auto;
 }
 
+
 .reg-field {
+    padding: 0px 5px;
     width: 60%;
     font-size: 15px;
     background-color: transparent;
@@ -756,11 +817,12 @@
 }
 
 .reg-container {
-    z-index: 1;
+    position: absolute;
+    z-index: 0;
     font-family: 'Open Sans';
-    width: 400px;
+    width: 600px;
     text-align: center;
-    height: 80%;
+    height: 500px;
 	top: 0;
 	bottom: 0;
 	left: 0;
@@ -770,34 +832,45 @@
 
 .reg-title {
     font-size: 50PX;
-    background-color: read;
+    margin: 50px 0px 0px 0px;
+    padding: 20px;
+    background-color: black;
+    color: white;
 }
 
 .reg-submit {
+    
+    padding: 5px 20px;
     font-size: 20px;
     background-color: transparent;
+    float: right;
     border-style: solid;
     border-color: black;
     color: black;
-    float: right;
-    margin-top: 30px;
     font-family: "Open Sans";
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.5s;
+    margin-right: 130px
 }
 
 .reg-submit:hover {
-    background-color: sandybrown;
+    background-color: black;
+    color: white;
 }
 
 .reg-row {
+    width: 80%;
+    text-align: center;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 10px;
+    margin: 0 auto;
+    margin-top: 15px;
 }
 
 .reg-area {
+    padding: 0px 5px;
     border-style: solid;
+    display: flex;
     border-color: black;
     resize: none;
     width: 60%;
@@ -810,31 +883,27 @@
 }
 
 .profile-info-container {
-    position: fixed;
-    top: 100px;
     border-style: solid;
     border-color: black;
-    width: 22%;
     padding: 10px;
     font-family: 'Open Sans';
-    border-width: 1;
+    border-width: 1px;
+    color: white;
+    background-color: black;
 }
 
 .profile-post-container {
-    width: 70%;
-    left: 30%;
+    width: 100%;
     position: absolute;
 }
 
 .profile-username-label {
-    font-family: 'Vollkorn';
     font-size: 25px;
-    margin: 10px;
     text-align: center;
 }
 
 .profile-description-label {
-    text-align: justify;
+    text-align: center;
     font-size: 20px;
 }
 
@@ -879,19 +948,19 @@
     margin: auto;
 }
 .image {
+    min-width: 300px;
+    min-height: 300px;
+    margin: 0 auto;
     width:auto;
     height: auto;
+    text-align: center;   border-style: solid;
+    padding: 10px;
 }
 
 .photo-container {
     margin: 0 auto;
-    width: 60%;
-    height: 100%;
-    margin-top: 100px;
-    font-family: 'Open Sans';
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    padding: 10px;
+    background-color: white;
 }
 
 .info-container {
@@ -900,26 +969,20 @@
     flex-wrap: wrap;
 }
 
-.info-container .tag-container {
-    margin-left: 20px;
-}
+
 
 .photo-name {
-	margin-left: 10px;
-    font-size: 30px;
+    font-size: 20px;
     text-decoration: none;
     color: black;
     cursor: pointer;
 }
 
 .photo-title {
-    margin-left: 20px;
-    font-size: 50px;
-    font-family: 'Vollkorn';
+    font-size: 30px;
 }
 
 .photo-desc {
-    margin-left: 20px;
     font-size: 20px;
 }
 
@@ -931,10 +994,7 @@
     text-decoration: underline;
 }
 
-.image {
-    border-style: solid;
-    padding: 10px;
-}
+
 
 .back {
     cursor: pointer;
@@ -989,5 +1049,188 @@
 }
 
 .visible-icon {
-	font-size: 20%;
+	font-size: 14px;
+}
+
+.error-large-icon {
+    font-size: 200px;
+    z-index: 0;
+}
+
+.error-small-icon {
+    font-size: 100px;
+    left: 0px;
+    overflow: visible;
+    color: firebrick;
+}
+
+.error-icon-container {
+    width: 300px;
+    height: 200px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.photo-container .post-visibility {
+    padding: 0px;
+    text-align: left;
+    font-size: 14px;
+    color: dimgray;
+}
+
+.post-visibility {
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+    color: dimgray;
+}
+
+
+#preview {
+    height: 300px;
+    margin: 0 auto;
+}
+
+#upload-row-addtag {
+    width: 300px;
+    background: white;
+    height: 25px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#tag-field {
+    width: 240px;
+    border-style: none;
+    align-content: center;
+    align-items: center;
+    padding: 0px 10px;
+}
+
+.reg-area-update {
+    font-size: 15px;
+    width:70%;
+    text-align: right;
+    margin: 10 auto;
+}
+
+.upload-row .reg-area-update {
+    font-size: 15px;
+    width:92.5%;
+    text-align: right;
+    margin: 10 auto;
+}
+
+.toggleWrapper input{
+    display: none;
+}
+
+.toggle{
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	width: 300px;
+	height: 25px;
+	border-radius: 0px;
+	-webkit-transition: all 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	transition: all 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+.toggle:before, .toggle:after{
+	position: absolute;
+	line-height: 25px;
+	font-size: 15px;
+	z-index: 2;
+	-webkit-transition: all 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	transition: all 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.toggle:before{
+	content: "PRIVATE";
+	left: 50px;
+	color: black;
+}
+
+.toggleWrapper {
+    border-color: white;
+    border-style: solid;
+    border-width: 1px;
+    overflow: hidden;
+}
+
+.toggle:after{
+	content: "PUBLIC";
+	right: 50px;
+	color: white;
+}
+
+.toggle__handler{
+	display: inline-block;
+	position: relative;
+	z-index: 1;
+	background: white;
+	width: 150px;
+	height: 25px;
+	left: -75px;
+	-webkit-transition: all 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	transition: all 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	-webkit-transform: translateX(0px);
+	transform: translateX(0px);
+}
+
+.toggleWrapper input:checked + .toggle:before{
+	color: #fff;
+}
+.toggleWrapper input:checked + .toggle:after{
+	color: black;
+}
+
+.toggleWrapper input:checked + .toggle .toggle__handler{
+	width: 150px;
+	-webkit-transform: translateX(150px);
+	transform: translateX(150px);
+	border-color: #fff;
+}
+
+.image-container {
+    width: 100%;
+    text-align: center;
+    margin: 10px auto;
+}
+
+.user-access {
+    color: black;
+}
+
+.input-button-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+.user-photo-container {
+    margin: 10px 0px;
+}
+
+.photo-wrapper {
+    margin: 0 auto;
+    height: 100%;
+    margin-top: 70px;
+    margin-bottom: 70px;
+    width: 100%;
+    font-family: 'Open Sans';
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#warning-upload {
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+#desc {
+    height: 70px;
 }

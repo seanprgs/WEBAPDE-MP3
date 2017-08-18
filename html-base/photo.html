@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    
+    <title> niche </title>
+    <link rel = "icon" href = "static/res/icon.png">
+    
+    <!-- CSS LIBRARIES USED -->
+    <link href="static/css/lib/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- JS LIBRARIES USED -->
+    <script src = "static/js/lib/jquery-min.js"> </script>
+    <script src = "static/js/lib/jQueryRotate.js"> </script>
+    
+    <!-- CSS MAIN -->
+    <link href="static/css/styles.css" rel="stylesheet" type="text/css" > 
+
+    <!-- JS MAIN -->
+    <script src = "static/js/index.js"> </script>
+</head>
+    
+<body>
+    <!-- BG AND OVERLAY -->
+    <div id = "background"> </div>
+    <div id = "overlay"> </div>
+    
+    <!-- VIEWPORT START -->
+    <div id = "viewport">
+        <!-- NAVIGATION BAR -->
+        <jsp:include page="nav-bar.jsp"/>
+        <!-- MAIN CONTENT CONTAINER START -->
+        <div class = "main-content-container">                  <!-- PHOTO BACK BUTTON -->
+            <a onclick="window.history.back()" class = "back">
+                <i class = "fa fa-arrow-left"> </i> back
+            </a>
+            
+            <!-- PHOTO WRAPPER START -->
+            <div class = "photo-wrapper">
+                <!-- PHOTO CONTAINER START -->
+                <div class = "photo-container"> 
+                    <!-- INFORMATION ABOUT PHOTO -->
+                    <div class = "info-container">
+                        <!-- USER -->
+                        <a class = "photo-name" href = "profile?=${photo.user.userid}"> 
+                        	<!-- NAME -->
+                            <label class = "photo-name">@${photo.user.username} </label> 
+                        </a> 
+                        <!-- POST VISIBILITY END -->
+                        <!-- TITLE -->
+                        <label class = "photo-title"> ${photo.title } </label>
+                        <!-- POST VISIBILITY START -->
+                        <div class = "post-visibility" >  
+                            <c:choose>
+                                <c:when test = "${item.visible}">
+                                    public
+                                    <i class = "visible-icon fa fa-globe"></i>	
+                                </c:when>
+                                <c:otherwise>
+                                    private <i class = "visible-icon fa fa-lock"> </i>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                        <!-- DESCRIPTION -->
+                        <label class = "photo-desc"> ${photo.description} </label>
+
+                        <!-- IMAGE CONTAINER -->
+                        <div class = "image-container">
+                            <img class = "image" src ="${photo.path }">
+                        </div>
+                        
+                        <!-- USER ACCESS CONTAINER -->
+                        <div class = "user-photo-container">
+                            shared with:
+                            <c:forEach items = "${photo.hasAccess }" var = "item"> 
+                                <a class = "user-access" href = "profile?user=${item.userid}">
+                                    @${item.username}
+                                </a>
+                            </c:forEach>
+                        </div>
+                        
+                        <!-- SHARING TO USERS IF PHOTO IS YOURS -->
+                        <c:choose>
+                            <c:when test = "${not empty sessionScope.sessionuser}">
+                                <div class = "input-button-container">
+                                    <input class = "field-photo users" name="users">
+                                    <button class = "button-photo share"> share  </button>
+                                </div>
+                            </c:when>
+                        </c:choose>
+                        
+                        <!-- TAG CONTAINER -->
+                        <div class = "tag-container">
+                            tags:
+                            <c:forEach items = "${photo.tags}" var = "item">
+                                <a class = "tag"> 
+                                    ${item.tag}
+                                </a>
+                            </c:forEach>
+                         </div>
+
+                        <!-- ADDING TAGS IF PHOTO IS YOURS -->
+                        <c:choose>
+                            <c:when test = "${sessionScope.sessionuser.userid == photo.user.userid}">
+                                <div class = "input-button-container">
+                                    <input class = "field-photo tags" name="button-photo tags">
+                                    <button class = "button-photo tags"> add tag  </button>
+                                </div>   
+                            </c:when>
+                        </c:choose>
+                    </div>
+                    <!-- PHOTO WRAPPER END -->
+                </div>
+                <!-- PHOTO CONTAINER END -->
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

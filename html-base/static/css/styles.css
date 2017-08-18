@@ -1,0 +1,1235 @@
+@import url('https://fonts.googleapis.com/css?family=Vollkorn');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+/* background base */
+#background {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    background-size:     cover;
+    background-position: center;   
+    background-image: url(../res/background.jpg);
+    height:100%;
+    width:100%;
+    filter: blur(0.5px);
+    z-index: -1;
+}
+
+#overlay {
+    position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    background-color: black;
+    opacity: 0;
+}
+
+#viewport {
+    position: absolute;
+    top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* navigation bar */
+.nav-item {
+    font-family: 'Vollkorn';
+    font-size: 200%;
+    color: white;
+}
+
+#nav-bar {
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    left: 0;
+    z-index: 3;
+    top: 0;
+}
+
+#nav-bar .main {
+    width: 100%;
+    opacity: 1;
+    z-index: 8;
+    height: 50px;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+#nav-bar .bg {
+    background: black;
+    width: 100%;
+    opacity: 1;
+    z-index: 6;
+    height: 50px;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.nav-icon {
+    text-decoration: none;
+    text-align: left;
+    cursor: pointer;
+    padding: 5px;
+    transition: 2s;
+}
+
+.nav-icon:hover {
+   text-shadow: 0 0 5px white;
+}
+
+.nav-main-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.nav-link {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.nav-title {
+    font-family: 'Vollkorn', sans-serif;
+    font-style: italic;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+.nav-home {
+    background-color: transparent;
+    border-style: none;
+    cursor: pointer;
+    text-decoration: none;
+    height: 46px;
+    font-size: 20px;
+    display: flex;
+    align-content: center;
+    transition: 0.3s;
+}
+
+.nav-home:hover {
+    border-bottom-style: solid;
+    border-bottom-color: white;
+}
+
+.nav-left {
+    position: absolute;
+    height: 100%;
+    line-height: 50px;
+}
+
+.nav-right {
+    top: 0;
+    right: 0;
+    position: absolute;
+    padding-right: 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-search {
+    width: 100%;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-width: 0.5;
+    border-color: white;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+.tag-container .tag {
+    font-family: "Open Sans";
+}
+
+.search {
+    font-family: 'Open Sans';
+}
+
+.button-photo {
+    width: 25%;
+    border-style: none;
+    background-color: black;
+    opacity: 0.8;
+    color: white;
+    font-family: "Open Sans";
+    padding: 0px 5px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.5s;
+}
+
+.share:hover {
+    opacity: 1.0;
+}
+
+.field-photo {
+    font-size: 20px;
+    width: 75%;
+    font-family: "Open Sans";
+    background-color: transparent;
+    border-color: black;
+}
+
+#users option{
+    font-family: "Open Sans";
+    background-color: black;
+    color: white;
+}
+
+
+
+.nav-center {
+    margin: auto;
+    width: 30%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    transition: 1s;
+}
+
+.nav-field {
+    background-color: transparent;
+    border-color: transparent;
+    font-size: 120%;
+    width: 70%;
+    margin: 0;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.nav-field:focus {
+   outline: none;
+}
+
+.nav-icon {
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+
+#search {
+    background-color: transparent;
+    border-color: transparent;
+    font-size: 120%;
+}
+
+.user {
+    font-size: 170%;
+    cursor: pointer;
+    font-family: "Open Sans";
+}
+
+#about {
+    width: 50px;
+    height: 50px;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+}
+
+.about-icon {
+    font-size: 35px;
+    border-style: none;
+    bottom: 0px;
+    background-color: transparent;
+}
+
+/* place holder */
+::-webkit-input-placeholder { 
+    color:    #9A9A9A;
+}
+
+:-moz-placeholder { 
+   color:    #9A9A9A;
+   opacity:  1;
+}
+
+::-moz-placeholder {
+   color:    #9A9A9A;
+   opacity:  1;
+}
+
+:-ms-input-placeholder { 
+   color:    #9A9A9A;
+}
+
+::-ms-input-placeholder { 
+   color:    #9A9A9A;
+}
+
+/* [login, logout] dropdown */
+.settings-wrapper, .login-form-wrapper {
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    background-color: black;
+    width: 250px;
+    color: white;
+    opacity: 1;
+    display: inline-block;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.warning {
+	color: firebrick;
+    font-weight: bolder;
+    text-align: center;
+    margin: 10 auto;
+    margin-top: 0;
+    width: 300px;
+    width: 60%;
+}
+
+.login-form {
+    margin: 0px;
+    margin-bottom: 5px;
+}
+
+.login-form, .login-field, .login-button {
+    font-size: 20px;
+    font-family: 'Raleway';
+    color: white;
+}
+
+.login-field {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 90%;
+}
+
+
+
+.login-check {
+    margin-left: 10px;
+}
+.login-button, .login-link, .login-field {
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    background-color: black;
+    transition: 1s;
+}
+
+.login-link {
+    cursor: pointer;
+    margin: 0;
+    margin-left: 5px;
+    font-family: 'Raleway';
+    border: none;
+}
+
+.login-button {
+    color: white;
+    border-width: 1px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 90%;
+}
+
+.login-button:hover {
+    cursor: pointer;
+    border-width: 1px;
+}
+
+.login-button {
+    float: left;
+}
+
+.login-row {
+    width: 100%;
+}
+
+
+.settings-wrapper {
+    width: 150px;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.user-setting-button  {
+    background-color: transparent;
+    color: white;
+    font-family: 'Raleway';
+    text-decoration: none;
+    text-align: center;
+    font-size: 20px;
+    border: none;
+    height: 100%;
+    cursor: pointer;
+    transition: 0.4s;
+    padding: 10px;
+}
+
+
+
+.logout-button {
+    width: 100%;
+    
+}
+
+.user-setting-button:hover {
+    color: black;
+    background-color: white;
+}
+.login-row-form {
+    margin: 0px;
+}
+.login-label {
+    margin: 0px 10px;
+}
+
+.login-link {
+    color: white;
+    font-size: 20px;
+    text-decoration: none
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+/* posts */
+.main-content-container {
+    width: 90%;
+    min-width: 630px;
+    position: absolute;
+    left:0;
+    right: 0;
+    z-index: 2;
+    margin: 50px auto;
+    top: 50px;
+}
+
+
+.user-view {
+	position: absolute;
+	z-index: 10;
+}
+.post-container {
+	column-width: 200px;
+	column-gap: 15px;
+    width: 100%;
+    display: inline-block;
+    margin: 10px;
+}
+
+.post {    
+    font-family: "Open Sans";
+    text-align: center;
+    background: #ffffff;
+	transition: .6s;
+    break-inside: avoid;
+    width: 200px;
+    margin: 5px;
+}
+
+.post:hover {
+   box-shadow: 1px 1px 1px 0px #000000;
+}
+
+.post-title {
+    color: black;
+    text-align: center;
+    font-weight: bolder;
+    font-family: "Vollkorn";
+    font-size: 30px;
+    margin: 0 20px;
+    padding-top: 20px;
+    transition: 0.3s;
+}
+
+.post-title-link {
+    text-decoration: none;
+}
+
+.post-title:hover {
+	text-decoration: underline;
+}
+
+.post-desc,  .post-username {
+    margin: 0 20px;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.post-desc {
+    text-align: left;
+}
+
+.post-image {
+    margin: 10px auto;
+    width: 180px;
+    height: auto;
+}
+
+
+
+.post-username-link {
+    text-decoration: none;
+    color: black;
+    text-align: left;
+}
+
+.post-username-link:hover {
+    text-decoration: underline;
+}
+
+.tag {
+    position: relative;
+    text-align: center;
+    padding-left: 10px;
+    margin: 0px;
+    cursor: pointer;
+    color: black;
+    z-index: 1;
+}
+
+.tag:hover {
+    text-decoration: underline;
+}
+
+.tag-container {
+    width: 100%;
+    text-align: right;
+    display: inline-flex;
+    margin: 10px 0px;
+}
+
+.more-container {
+    font-family: 'Open Sans';
+    text-align: center;
+    cursor: pointer;
+}
+
+.post-container:hover post:not(:hover) {
+	opacity: 0.4;
+}
+
+.more-message {
+    font-size: 25px;   
+    transition: 1s;
+}
+
+.more-message:hover {
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.header-container {
+    width: 100%;
+    font-family: "Open Sans";
+    font-size: 30px;
+    margin: 10px;
+    display: flex;
+}
+
+
+.menu-button i{
+    font-size: 30px;
+}
+
+.menu-button {
+    color: black;
+    font-size: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    padding-right: 5px;
+    text-decoration: none;
+    transition: .5s;
+    background-color: transparent;
+    border-style: none;
+    font-family: 'Open Sans';
+}
+
+.menu-button-selected {
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    border-bottom-width: 2px;
+}
+
+
+.menu-button:hover {
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    border-bottom-width: 2px;
+}
+
+.divider {
+    border-right-style: solid;
+    padding-right: 5px;
+    height: 40px;
+}
+
+
+.upload-container {
+    position: fixed;
+	top: 50px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+
+.upload {
+    overflow-y: auto;
+    position: absolute;
+    z-index: 1;
+    font-family: 'Open Sans';
+    width: 600px;
+    text-align: center;
+    height: 80%;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    margin: 0px auto;
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+
+.upload-bg {
+    position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    background-color: black;
+    opacity: 0.9;
+    z-index: 0;
+}
+
+.upload-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    width: 500px;
+}
+
+.upload-box {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#upload {
+    transition: .4s;
+}
+
+#upload:hover {
+    border-bottom-style: solid;
+}
+
+.upload-tag-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: 20px;
+    width: 300px;
+    font-size: 15px;
+    font-family: "Open Sans"
+}
+
+.upload-tag {
+    border-style: solid;
+    border-width: 1px;
+    width: auto;
+    line-height: 25px;
+    flex-direction: row;
+    flex-grow: 5;
+    margin: 1px;
+    align-items: center;
+    padding: 0px 5px;
+}
+
+.upload-tag p {
+    margin-left: 5PX;
+    position: absolute;
+    left: 0px;
+    margin-right: 5px;
+}
+
+.upload-tag i {
+    color: white;
+    margin-left: 10PX;
+    cursor: pointer;
+    transition: 0.4s;
+    font-size: 20px;
+}
+
+.upload-tag i:hover{
+    color: firebrick;
+}
+
+.upload-field {
+    width: 280px;
+    font-size: 15px;
+    font-family: "Open Sans";
+    padding: 0px 10px;
+    resize: none;
+}
+
+.upload-pic-field {
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+    width: 260px;
+    font-size: 20px;
+    font-family: "Open Sans"   
+}
+
+.upload-pic-field + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    display: inline-block;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.upload-pic-field + label:hover {
+    border-bottom-style: solid;
+}
+
+.upload-title {
+    font-size: 40px;
+}
+
+.upload-label {
+    text-align: right;
+    margin-right: 10px;
+    width: 150px;
+    font-size: 20px;
+}
+
+.upload-button {
+    font-size: 20px;
+    background-color: transparent;
+    border-style: none;
+    color: white;
+    margin-left: 10px;
+    font-family: "Open Sans";
+    cursor: pointer;
+}
+
+#add-tag {
+    background-color: black;
+    margin: 0px;
+    width: 40px;
+    transition: 0.5s;
+}
+
+
+
+#add-tag:hover {
+    color: seagreen;
+}
+
+.add-container {
+    position: fixed;
+    z-index: 6;
+    bottom: 10%;
+    right: 10%;
+    
+}
+
+.add-photo:hover {
+    text-align: center;
+    align-content: center;
+    padding: 5px;
+}
+
+.add-photo:focus {
+    outline: none;
+}
+
+.add-photo {   
+    text-align: center;
+    align-content: center;
+    padding: 5px;
+    width: 80px;
+    height: 80px;
+    border-radius: 3em;
+    cursor: pointer;
+    transition: 0.4s;
+    background-color: black;
+    text-align: center;
+    padding: 10px;
+    border-style: none;
+    color: white;
+    font-size: 60px;
+	box-shadow: 0 4px 10px rgba(34, 25, 25, 0.4);
+}
+
+/* registration page */
+.reg-label {
+    width: 120px;
+    font-size: 20px;
+}
+
+.reg-bg {
+    background-color: white;
+    z-index: 0;
+    font-family: 'Open Sans';
+    width: 600px;
+    height: 400px;
+    text-align: center;
+    height: 500px;
+	top: 0;
+	bottom: 0;
+    opacity: 0.8;
+	left: 0;
+	right: 0;
+    position: absolute;
+    margin: 50px auto;
+}
+
+
+.reg-field {
+    padding: 0px 5px;
+    width: 60%;
+    font-size: 15px;
+    background-color: transparent;
+    border-style: solid;
+    font-family: "Open Sans"
+}
+
+.reg-container {
+    position: absolute;
+    z-index: 0;
+    font-family: 'Open Sans';
+    width: 600px;
+    text-align: center;
+    height: 500px;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    margin: 50px auto;
+}
+
+.reg-title {
+    font-size: 50PX;
+    margin: 50px 0px 0px 0px;
+    padding: 20px;
+    background-color: black;
+    color: white;
+}
+
+.reg-submit {
+    
+    padding: 5px 20px;
+    font-size: 20px;
+    background-color: transparent;
+    float: right;
+    border-style: solid;
+    border-color: black;
+    color: black;
+    font-family: "Open Sans";
+    cursor: pointer;
+    transition: 0.5s;
+    margin-right: 130px
+}
+
+.reg-submit:hover {
+    background-color: black;
+    color: white;
+}
+
+.reg-row {
+    width: 80%;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
+.reg-area {
+    padding: 0px 5px;
+    border-style: solid;
+    display: flex;
+    border-color: black;
+    resize: none;
+    width: 60%;
+    height: 100px;
+    font-size: 15px;
+    background-color: transparent;
+    border-style: solid;
+    border-width: 2px;
+    font-family: "Open Sans";
+}
+
+.profile-info-container {
+    border-style: solid;
+    border-color: black;
+    padding: 10px;
+    font-family: 'Open Sans';
+    border-width: 1px;
+    color: white;
+    background-color: black;
+}
+
+.profile-post-container {
+    width: 100%;
+    position: absolute;
+}
+
+.profile-username-label {
+    font-size: 25px;
+    text-align: center;
+}
+
+.profile-description-label {
+    text-align: center;
+    font-size: 20px;
+}
+
+
+.about-container {
+    margin-top: 40px;
+}
+
+.about-title {
+    font-size: 50px;
+    text-align: center;
+    font-family: "Vollkorn"
+}
+
+.about-defn {
+    font-size: 25px;
+    font-family: "Vollkorn";
+    font-style: italic;
+}
+
+.about-desc {
+    font-size: 20px;
+    font-family: 'Raleway';
+}
+
+.about-passed {
+    font-size: 20px;
+    font-family: 'Raleway';
+    transition: 1s;
+}
+
+.about-member:hover {
+    text-decoration: underline;
+}
+
+.about-info {
+    background-color: white;
+    opacity: 0.8;
+    margin: 50px;
+    padding: 10px;
+    width: 60%;
+    margin: auto;
+}
+.image {
+    min-width: 300px;
+    min-height: 300px;
+    margin: 0 auto;
+    width:auto;
+    height: auto;
+    text-align: center;   border-style: solid;
+    padding: 10px;
+}
+
+.photo-container {
+    margin: 0 auto;
+    padding: 10px;
+    background-color: white;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+
+
+.photo-name {
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.photo-title {
+    font-size: 30px;
+}
+
+.photo-desc {
+    font-size: 20px;
+}
+
+.photo-container a {
+    text-decoration: none;
+}
+
+.photo-container a:hover {
+    text-decoration: underline;
+}
+
+
+
+.back {
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Open sans';
+    color: black;
+    text-decoration: none;
+    font-size: 30px;
+    position: fixed;
+    top: 75px;
+}
+
+.back:hover {
+    border-bottom-style: solid;
+}
+
+.error-message-container {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 20px;
+    height: 100%;
+    font-family: 'Open Sans';
+}
+
+.error-content {
+    left: 0;
+}
+
+.error-message-container .error-lock-icon {
+    font-size: 150px;
+    z-index: 2;
+    bottom: 50px;
+    position: absolute;
+    transition: 0.6s;
+}
+
+.error-message-container .error-photo-icon {
+    font-size: 300px;
+    color: white;
+    margin: 0 auto;
+}
+
+.error-back {
+    cursor: pointer;
+    font-size: 30px;
+    transition: 0.3s;
+}
+
+.error-back:hover {
+    border-bottom-style: solid;
+}
+
+.visible-icon {
+	font-size: 14px;
+}
+
+.error-large-icon {
+    font-size: 200px;
+    z-index: 0;
+}
+
+.error-small-icon {
+    font-size: 100px;
+    left: 0px;
+    overflow: visible;
+    color: firebrick;
+}
+
+.error-icon-container {
+    width: 300px;
+    height: 200px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.photo-container .post-visibility {
+    padding: 0px;
+    text-align: left;
+    font-size: 14px;
+    color: dimgray;
+}
+
+.post-visibility {
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+    color: dimgray;
+}
+
+
+#preview {
+    height: 300px;
+    margin: 0 auto;
+}
+
+#upload-row-addtag {
+    width: 300px;
+    background: white;
+    height: 25px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#tag-field {
+    width: 240px;
+    border-style: none;
+    align-content: center;
+    align-items: center;
+    padding: 0px 10px;
+}
+
+.reg-area-update {
+    font-size: 15px;
+    width:70%;
+    text-align: right;
+    margin: 10 auto;
+}
+
+.upload-row .reg-area-update {
+    font-size: 15px;
+    width:92.5%;
+    text-align: right;
+    margin: 10 auto;
+}
+
+.toggleWrapper input{
+    display: none;
+}
+
+.toggle{
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	width: 300px;
+	height: 25px;
+	border-radius: 0px;
+	-webkit-transition: all 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	transition: all 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+.toggle:before, .toggle:after{
+	position: absolute;
+	line-height: 25px;
+	font-size: 15px;
+	z-index: 2;
+	-webkit-transition: all 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	transition: all 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.toggle:before{
+	content: "PRIVATE";
+	left: 50px;
+	color: black;
+}
+
+.toggleWrapper {
+    border-color: white;
+    border-style: solid;
+    border-width: 1px;
+    overflow: hidden;
+}
+
+.toggle:after{
+	content: "PUBLIC";
+	right: 50px;
+	color: white;
+}
+
+.toggle__handler{
+	display: inline-block;
+	position: relative;
+	z-index: 1;
+	background: white;
+	width: 150px;
+	height: 25px;
+	left: -75px;
+	-webkit-transition: all 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	transition: all 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	-webkit-transform: translateX(0px);
+	transform: translateX(0px);
+}
+
+.toggleWrapper input:checked + .toggle:before{
+	color: #fff;
+}
+.toggleWrapper input:checked + .toggle:after{
+	color: black;
+}
+
+.toggleWrapper input:checked + .toggle .toggle__handler{
+	width: 150px;
+	-webkit-transform: translateX(150px);
+	transform: translateX(150px);
+	border-color: #fff;
+}
+
+.image-container {
+    width: 100%;
+    text-align: center;
+    margin: 10px auto;
+}
+
+.user-access {
+    color: black;
+}
+
+.input-button-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+.user-photo-container {
+    margin: 10px 0px;
+}
+
+.photo-wrapper {
+    margin: 0 auto;
+    height: 100%;
+    margin-top: 70px;
+    margin-bottom: 70px;
+    width: 100%;
+    font-family: 'Open Sans';
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#warning-upload {
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+#desc {
+    height: 70px;
+}

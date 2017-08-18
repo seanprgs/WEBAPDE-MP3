@@ -1,9 +1,6 @@
 package niche.servlet;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URLDecoder;
-import java.nio.file.Files;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
@@ -18,14 +15,14 @@ import niche.action.ActionHandler;
 import niche.action.AddTagActionHandler;
 import niche.action.LoginActionHandler;
 import niche.action.LogoutActionHandler;
+import niche.action.MoreActionHandler;
 import niche.action.PhotoActionHandler;
 import niche.action.PostActionHandler;
 import niche.action.ProfileActionHandler;
 import niche.action.RegisterActionHandler;
 import niche.action.SearchActionHandler;
 import niche.action.SharePhotoActionHandler;
-import niche.action.ViewPrivateActioHandler;
-import niche.action.ViewPublicActionHandler;
+import niche.action.ViewActionHandler;
 import niche.action.WelcomeActionHandler;
 
 /**
@@ -37,8 +34,7 @@ class URLPatterns {
 	public final static String LOGOUT = "/logout";
 	public final static String REGISTER = "/register";
 	public final static String POST = "/post";
-	public final static String VIEW_PUBLIC = "/view-public";
-	public final static String VIEW_PRIVATE = "/view-private";
+	public final static String VIEW = "/view";
 	public final static String ABOUT = "/about";
 	public final static String PROFILE = "/profile";
 	public final static String PHOTO = "/photo";
@@ -46,6 +42,8 @@ class URLPatterns {
 	public static final String SEARCH = "/search";
 	public final static String ADDTAG = "/addtag";
 	public final static String SHAREPHOTO ="/sharephoto";
+	public final static String FILE = "/files/*";
+	public final static String MORE = "/more";
 	
 }
 
@@ -53,16 +51,18 @@ class URLPatterns {
 							URLPatterns.LOGOUT, 
 							URLPatterns.REGISTER, 
 							URLPatterns.POST, 
-							URLPatterns.VIEW_PUBLIC, 
-							URLPatterns.VIEW_PRIVATE, 
+							URLPatterns.VIEW, 
 							URLPatterns.ABOUT, 
 							URLPatterns.PROFILE,
 							URLPatterns.PHOTO,
 							URLPatterns.WELCOME,
 							URLPatterns.SEARCH,
 							URLPatterns.ADDTAG,
-							URLPatterns.SHAREPHOTO})
-@MultipartConfig(location="C:\\Users\\Jam\\Desktop")
+							URLPatterns.SHAREPHOTO,
+							URLPatterns.FILE,
+							URLPatterns.MORE})
+
+@MultipartConfig(location="D:\\webapps\\images")
 public class NicheController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private HashMap <String, ActionHandler> actions;
@@ -76,20 +76,18 @@ public class NicheController extends HttpServlet {
         actions.put(URLPatterns.LOGOUT, new LogoutActionHandler());
         actions.put(URLPatterns.REGISTER, new RegisterActionHandler());
         actions.put(URLPatterns.POST, new PostActionHandler());
-        actions.put(URLPatterns.VIEW_PUBLIC, new ViewPublicActionHandler());
-        actions.put(URLPatterns.VIEW_PRIVATE, new ViewPrivateActioHandler());
+        actions.put(URLPatterns.VIEW, new ViewActionHandler());
         actions.put(URLPatterns.ABOUT, new AboutActionHandler());
         actions.put(URLPatterns.PROFILE, new ProfileActionHandler());
         actions.put(URLPatterns.WELCOME, new WelcomeActionHandler());
         actions.put(URLPatterns.SEARCH, new SearchActionHandler());
         actions.put(URLPatterns.ADDTAG, new AddTagActionHandler());
         actions.put(URLPatterns.SHAREPHOTO, new SharePhotoActionHandler());
+        actions.put(URLPatterns.MORE, new MoreActionHandler());
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
 		actions.get(request.getServletPath()).execute(request, response);
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

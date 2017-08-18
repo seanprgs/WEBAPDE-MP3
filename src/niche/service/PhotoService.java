@@ -2,6 +2,7 @@ package niche.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -36,6 +37,31 @@ private static final String COL_USERID = "user_userid";
 			TypedQuery<Photo> q = em.createQuery("FROM photos", Photo.class);
 			photos = q.getResultList();
 			
+			trans.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			em.close();
+		}
+		
+		return photos;
+	}
+	
+	public static List <Photo> getAllPublicPhotos() 
+	{
+		List<Photo> photos = new ArrayList<Photo>();
+		
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("mysqldb");
+		EntityManager em = emf.createEntityManager();
+		
+		EntityTransaction trans = em.getTransaction();
+		
+		try {
+			trans.begin();
+			TypedQuery<Photo> q = em.createQuery("FROM photos where " + COL_VISIBLE + " = '1'", Photo.class);
+			photos = q.getResultList();
+
+			Collections.reverse(photos);
 			trans.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -161,8 +187,7 @@ private static final String COL_USERID = "user_userid";
 		return photos;
 	}
 	
-	public static List <Photo> getAllPublicPhotos() 
-	{
+	public static List <Photo> getPhotosSeenByUser (int id, int photoCounter, int size) {
 		List<Photo> photos = new ArrayList<Photo>();
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("mysqldb");
@@ -172,10 +197,43 @@ private static final String COL_USERID = "user_userid";
 		
 		try {
 			trans.begin();
-			TypedQuery<Photo> q = em.createQuery("FROM photos where " + COL_VISIBLE + " = '1'", Photo.class);
+			TypedQuery<Photo> q = em.createQuery("FROM photos", Photo.class);
+			
 			photos = q.getResultList();
+			
+			for(int i = 0; i < photos.size(); i++)
+			{
+				Iterator <User> access = photos.get(i).getHasAccess().iterator();
+				boolean retain = false;
+				
+				while(access.hasNext()) {
+					User acc = access.next();
+					if(id == acc.getUserid()) {
+						retain = true;
+					}
+					
+					if(retain)
+						break;
+				}
+				
+				if (id == photos.get(i).getUser().getUserid()) {
+					retain = true;
+				}
+				
+				if(!retain) {
+					photos.remove(i);
+					i--;
+				}
+			}
 
-			Collections.reverse(photos);
+			Collections.reverse(photos);			
+			
+			//get only N(size) queries
+			if(size > photos.size() - photoCounter)//check if number of entries is less than size (capacity)
+				photos = photos.subList(photoCounter, photos.size()); //sublist(from, to) from = inclusive, to = exclusive
+			else
+				photos = photos.subList(photoCounter, photoCounter + size);
+			
 			trans.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -185,7 +243,6 @@ private static final String COL_USERID = "user_userid";
 		
 		return photos;
 	}
-
 	public static List<Photo> getPhotosOfUser(int id) 
 	{
 		List<Photo> photos = new ArrayList<Photo>();
@@ -362,17 +419,12 @@ private static final String COL_USERID = "user_userid";
 		try {
 			trans.begin();
 			
-			//find photo
-			//get its hasAccesss
-			//add giveAccess
-			//merge
 			
 			Photo p = null;
 			p = em.find(Photo.class, id);
 			
 			Set<User> hasAccess = p.getHasAccess();
 			
-			//check if photo has already been shared with user
 			if(!hasAccess.contains(giveAccess));
 				hasAccess.add(giveAccess);
 				

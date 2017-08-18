@@ -1,0 +1,107 @@
+<!-- NAVIGATION BAR START -->
+<nav id = "nav-bar">   
+    <!-- NAVIGATION BAR BACKGROUND -->
+    <div class = "bg"> </div>
+
+     <!-- NAVIGATION BAR MAIN START -->
+     <div class = "main">
+        <!-- NAVIGATION BAR MAIN LEFT START -->
+        <div class = "nav-left-wrapper">
+            <!-- NAVIGATION BAR HOME BUTTON -->
+            <a class = "nav-home" type = "submit"> 
+                <img class = "nav-main-icon" src ="static/res/icon.png">
+                <span class = "nav-item nav-title"> niche </span> 
+            </a>
+        </div>
+        <!-- NAVIGATION BAR MAIN LEFT END -->
+
+        <!-- NAVIGATION BAR MAIN CENTER START --> 
+        <div class = "nav-center">
+            <!-- NAVIGATION BAR SEARCH -->
+            <div class = "nav-search"> 
+                    <!-- NAVIGATION BAR SEARCH FIELD -->
+                    <input id = "search" class = "nav-item nav-field" type = "text" placeHolder = "Search by tags">
+                    <!-- NAVIGATION BAR SEARCH BUTTON -->
+                    <a id="search" href="search?tag='TAG1">
+                        <i class="nav-item nav-icon fa fa-search fa-21"> </i> 
+                    </a>
+            </div>
+        </div>
+        <!-- NAVIGATION BAR MAIN CENTER END --> 
+
+        <!-- NAVIGATION BAR MAIN RIGHT START --> 
+        <div class = "nav-right">
+            <!-- NAVIGATION BAR USER START -->
+            <div class = "nav-user">
+                <!-- WETHER A USER EXISTS IN SESSION START -->
+                <c:choose>
+                    <!-- NO USER EXISTS IN SESSION START -->
+                    <c:when test = "${empty sessionScope.sessionuser}" >
+                        <!-- NAVIGATION BAR USER NOT LOGGED IN -->
+                        <div class = "user nav-item nav-link"> 
+                            login <i class="nav-icon fa fa-user-circle fa-1x"> </i> 
+                        </div>
+
+                        <!-- NAVIGATION BAR LOGIN SECTION USER NOT LOGGED IN START -->
+                        <div class = "login-form-wrapper"> 
+                            <!-- NAVIGATION BAR LOGIN FORM USER NOT LOGGED IN -->
+                            <form class = "login-form" action="login" method="POST">
+                                <label class = "login-label"> username</label>
+                                <input id = "username" class = "login-field" name = "username" type="text"> <br>
+                                <label class = "login-label"> password</label>
+                                <input id = "password" class = "login-field" name = "password" type="password"> <br>
+                                <input class = "login-check" name = "remember" type="checkbox"> Remember me <br>
+                                <input class = "login-button" type='submit' value = "Login"> <br>
+                            </form>
+
+                            <!-- NAVIGATION BAR LOGIN LINK TO REGISTER USER NOT LOGGED IN -->
+                            <form class = "login-form" action = "register.html">
+                                <button type = "submit" class = "login-link">
+                                    New here? Click here to register.
+                                </button>
+                            </form>
+                        </div>
+                        <!-- NAVIGATION BAR LOGIN SECTION USER NOT LOGGED IN END -->
+                    </c:when>
+                    <!-- NO USER EXISTS IN SESSION END -->
+
+                    <!-- USER EXISTS IN SESSION START -->
+                    <c:otherwise>
+                        <!-- NAVIGATION BAR USER LOGGED IN -->
+                        <div class = "user nav-item nav-link"> 
+                            ${sessionScope.sessionuser.username}
+                            <i class="nav-icon fa fa-user-circle fa-1x"> </i> 
+                        </div>
+
+                        <!-- NAVIGATION BAR SETTINGS USER LOGGED IN -->
+                        <div class = "settings-wrapper"> 
+                            <!-- NAVIGATION BAR PROFILE USER LOGGED IN -->
+                            <a type="submit" class = "user-setting-button" href="profile?=${sessionScope.sessionuser.id}">
+                                <i class = "fa fa-user-o"> </i> Profile 
+                            </a>
+                            <!-- NAVIGATION BAR LOGOUT USER LOGGED IN -->
+                            <form action = "logout" class = 'login-row-form'>
+                                <button type = "submit" class = "user-setting-button">
+                                    <i class = "fa fa-sign-out"> </i> Logout 
+                                </button>
+                            </form>
+                        </div>
+                    </c:otherwise>
+                    <!-- USER EXISTS IN SESSION START -->
+                </c:choose>  
+            </div>
+            <!-- NAVIGATION BAR USER END -->
+
+            <!-- NAVIGATION BAR ABOUT START -->
+            <form id = "about" action="about" class = "nav-item nav-link">
+                <button class = "about-icon" type = "submit">
+                    <i class="nav-icon fa fa-question-circle-o"> </i>
+                </button>
+            </form>
+            <!-- NAVIGATION BAR ABOUT END -->
+        </div>
+        <!-- NAVIGATION BAR MAIN RIGHT END --> 
+    </div>
+    <!-- NAVIGATION BAR MAIN END --> 
+</nav>
+<!-- NAVIGATION BAR END -->
