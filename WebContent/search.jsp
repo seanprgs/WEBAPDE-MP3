@@ -35,7 +35,7 @@
         <%-- MAIN CONTENT CONTAINER START --%>
         <div class = "main-content-container">
             <%-- HEADER CONTAINER --%>
-            <div class = "header-container"> search results for: '{tag}'</div>
+            <div class = "header-container"> search results for: '${tag}'</div>
             
             <%-- POST CONTAINER --%>
             <div class = "post-container">

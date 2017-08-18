@@ -12,6 +12,11 @@ $(function () {
         $('.user-view').slideToggle();
     });
     
+    $('#search').on('input', function(){
+    	var value = $('#search').val();
+    	$('#search-icon').attr('href', 'search?tag='+value);
+    });
+    
     $('.post').click(function(){
         var id = $(this).attr('id');
         window.location.href = "photo?id="+id;
