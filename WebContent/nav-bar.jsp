@@ -56,7 +56,7 @@
                             </form>
 
                             <%-- NAVIGATION BAR LOGIN LINK TO REGISTER USER NOT LOGGED IN --%>
-                            <form class = "login-form" action = "register.html">
+                            <form class = "login-form" action = "register.jsp">
                                 <button type = "submit" class = "login-link">
                                     New here? Click here to register.
                                 </button>
